@@ -88,3 +88,46 @@ header {
         display: flex;
     }
 }
+/* 背景のグラデーション設定 */
+body {
+    background: linear-gradient(90deg, rgb(4, 34, 169), rgb(4, 166, 56));
+    margin: 0;
+    padding: 0;
+}
+
+/* テキストスタイル（基本設定） */
+.last, p {
+    font-family: sans-serif;
+    color: white;
+    font-size: 50px; /* デスクトップ用サイズ */
+    text-align: center;
+    margin: 20px;
+}
+
+/* 画像の中央揃え */
+.img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* スマートフォンやタブレット用のメディアクエリ */
+@media (max-width: 768px) {
+    .last, p {
+        font-size: 30px; /* モバイル用にフォントサイズを調整 */
+    }
+}
+
+/* さらに小さい画面サイズ用のメディアクエリ */
+@media (max-width: 480px) {
+    .last, p {
+        font-size: 20px; /* より小さな画面での最適なサイズ */
+    }
+
+    /* 画像のサイズ調整 */
+    .img img {
+        width: 80%; /* モバイルで画像を画面幅の80%に調整 */
+        height: auto;
+    }
+}
+
