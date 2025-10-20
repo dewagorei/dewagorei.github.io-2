@@ -1,53 +1,201 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Watazako Channel - わたざこちゃんねる</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>watazakoチャンネル紹介</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* ネオン文字（明るさ控えめ） */
+    @keyframes neon-glow {
+      0%, 100% { text-shadow: 0 0 3px #66ffff, 0 0 6px #66ffff, 0 0 12px #66ffff; }
+      50% { text-shadow: 0 0 6px #66ffff, 0 0 12px #66ffff, 0 0 24px #66ffff; }
+    }
+    @keyframes neon-flicker {
+      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+      20%, 22%, 24%, 55% { opacity: 0.5; }
+    }
+    .neon-text {
+      color: #66ffff;
+      animation: neon-glow 1.5s infinite alternate, neon-flicker 2s infinite;
+    }
+    .neon-button {
+      background-color: #cc00cc;
+      color: #fff;
+      text-shadow: 0 0 3px #cc00cc, 0 0 6px #cc00cc, 0 0 12px #cc00cc;
+      animation: neon-glow 1.5s infinite alternate;
+    }
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="style.css">
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      overflow-x: hidden;
+      background: #111827;
+      position: relative;
+    }
 
-    <!-- Boxicons -->
-    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    /* 粒子 */
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.7;
+      pointer-events: none;
+      animation: float 5s linear infinite;
+    }
+    @keyframes float {
+      0% { transform: translateY(0) translateX(0); opacity: 0.5; }
+      50% { transform: translateY(-50px) translateX(50px); opacity: 1; }
+      100% { transform: translateY(-100px) translateX(0); opacity: 0; }
+    }
 
-    <!-- Remixicons -->
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.6.0/fonts/remixicon.css" rel="stylesheet">
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&family=Poppins&family=Roboto:wght@700&display=swap" rel="stylesheet">
+    /* 流れる線 */
+    .line {
+      position: absolute;
+      width: 2px;
+      height: 100px;
+      background: linear-gradient(180deg, rgba(102,255,255,0), rgba(102,255,255,0.8), rgba(102,255,255,0));
+      animation: moveLine 4s linear infinite;
+    }
+    @keyframes moveLine {
+      0% { transform: translateY(-120px); }
+      100% { transform: translateY(100vh); }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>わたざこちゃんねる</h1>
-        <div class="menu-icon" id="menu-icon">
-            <i class="bx bx-menu"></i>
-        </div>
-        <ul class="navlist" id="navlist">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="gomi.html">わたざこチャンネルとは?</a></li>
-            <li><a href="ks.html">さいごに</a></li>
-        </ul>
-    </header>
 
-    <section class="hero">
-        <div class="hero-text">
-            <h5>わたざこチャンネルのサイト</h5>
-            <h4>あなたのお気に入りは?</h4>
-            <h1>WATAZAKO</h1>
-            <p>有名ゆっくり実況者「わたざこ」のサイトへようこそ!<strong>(多分すごい)</strong></p>
-            <a href="https://www.youtube.com/@WataZako-931" target="_blank" class="cta-button">わたざこ公式チャンネル</a>
-        </div>
-        <div class="hero-img">
-            <img src="わたざこ.png" alt="わたざこ画像">
-        </div>
-    </section>
+  <!-- 背景ライン -->
+  <div id="lines"></div>
 
-    <div class="icons">
-        <a href="https://www.youtube.com/" target="_blank"><i class="ri-youtube-line"></i></a>
+  <!-- ヘッダー -->
+  <header class="p-6 shadow-lg relative z-10">
+    <div class="container mx-auto flex flex-col sm:flex-col md:flex-row justify-between items-center">
+      <h1 class="text-3xl sm:text-3xl md:text-4xl font-bold neon-text mb-4 md:mb-0 text-center md:text-left">watazkpチャンネル</h1>
+      <nav class="flex flex-col sm:flex-row md:flex-row space-y-2 sm:space-y-0 sm:space-x-4 md:space-x-4 items-center">
+        <a href="https://www.youtube.com/@WataZako-931" target="_blank" class="hover:text-yellow-400">YouTube</a>
+        <a href="https://x.com/watazakoyoutube" target="_blank" class="hover:text-pink-400">X/Twitter</a>
+      </nav>
     </div>
+  </header>
 
-    <!-- JavaScript for Menu Toggle -->
-    <script src="script.js"></script>
+  <!-- チャンネル紹介 -->
+  <section id="about" class="container mx-auto p-6 my-8 bg-gray-900/80 backdrop-blur-md rounded-xl shadow-lg relative z-10">
+    <h2 class="text-2xl sm:text-2xl md:text-3xl font-semibold mb-4 neon-text text-center md:text-left">チャンネル紹介</h2>
+    <p class="mb-4 text-base sm:text-base md:text-lg text-gray-200">
+      watazakoチャンネルでは、ゲーム実況、Vlog、日常の面白動画などを中心に配信しています。
+      見るだけで楽しくなるコンテンツをお届け！
+    </p>
+    <div class="text-center md:text-left">
+      <a href="https://www.youtube.com/@WataZako-931" target="_blank" class="neon-button px-6 py-3 rounded-lg inline-block hover:bg-pink-600 transition-all duration-300">
+        チャンネル登録はこちら
+      </a>
+    </div>
+  </section>
+
+  <!-- チャンネル特徴 -->
+  <section id="features" class="container mx-auto p-6 my-8 bg-gray-900/80 backdrop-blur-md rounded-xl shadow-lg relative z-10">
+    <h2 class="text-2xl sm:text-2xl md:text-3xl font-semibold mb-4 neon-text text-center md:text-left">チャンネルの特徴</h2>
+    <ul class="list-disc pl-5 text-sm sm:text-base md:text-lg space-y-2 text-gray-200">
+      <li>ゲーム実況で毎日ワクワク体験をお届け</li>
+      <li>Vlogで日常の面白い瞬間をシェア</li>
+      <li>視聴者参加型企画も随時実施</li>
+      <li>毎回違う動画で新鮮な楽しみを提供</li>
+    </ul>
+  </section>
+
+  <!-- 視聴者メッセージ -->
+  <section id="message" class="container mx-auto p-6 my-8 bg-gray-900/80 backdrop-blur-md rounded-xl shadow-lg relative z-10">
+    <h2 class="text-2xl sm:text-2xl md:text-3xl font-semibold mb-4 neon-text text-center md:text-left">視聴者へのメッセージ</h2>
+    <p class="text-base sm:text-base md:text-lg text-gray-200">
+      このチャンネルは、ページを訪れるたびに異なる動画がランダムで表示されます。  
+      毎回新しい体験を楽しんで、ぜひチャンネル登録してください！
+    </p>
+  </section>
+
+  <!-- 最新動画 -->
+  <section id="videos" class="container mx-auto p-6 my-8 relative z-10">
+    <h2 class="text-2xl sm:text-2xl md:text-3xl font-semibold mb-6 neon-text text-center md:text-left">最新動画</h2>
+    <div id="video-grid" class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- JSで動画をランダム生成 -->
+    </div>
+  </section>
+
+  <!-- SNSリンク -->
+  <section id="sns" class="container mx-auto p-6 my-8 bg-gray-900/80 backdrop-blur-md rounded-xl shadow-lg relative z-10">
+    <h2 class="text-2xl sm:text-2xl md:text-3xl font-semibold mb-4 neon-text text-center md:text-left">SNSリンク</h2>
+    <ul class="space-y-3 text-base sm:text-base md:text-lg text-gray-200 text-center md:text-left">
+      <li><a href="https://www.youtube.com/@WataZako-931" target="_blank" class="text-cyan-400 hover:underline">YouTubeチャンネル</a></li>
+      <li><a href="https://x.com/watazakoyoutube" target="_blank" class="text-pink-400 hover:underline">X/Twitterアカウント</a></li>
+    </ul>
+  </section>
+
+  <!-- フッター -->
+  <footer class="bg-gray-800/80 text-white p-4 text-center neon-text relative z-10">
+    &copy; 2025 watazkp
+  </footer>
+
+  <!-- JS: 粒子・流れる線・ランダム色 + YouTube RSSランダム -->
+  <script>
+    function randomColor() {
+      const colors = ['#66ffff','#ff66ff','#66ff66','#ffff66','#ff6666','#66ffff'];
+      return colors[Math.floor(Math.random()*colors.length)];
+    }
+
+    // 粒子生成（色ランダム）
+    const particleCount = 50;
+    for(let i=0;i<particleCount;i++){
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      particle.style.width = Math.random()*4 + 2 + 'px';
+      particle.style.height = particle.style.width;
+      particle.style.backgroundColor = randomColor();
+      particle.style.left = Math.random()*window.innerWidth+'px';
+      particle.style.top = Math.random()*window.innerHeight+'px';
+      particle.style.animationDuration = 3+Math.random()*5+'s';
+      document.body.appendChild(particle);
+    }
+
+    // 流れる線生成（色ランダム）
+    const lineCount = 10;
+    for(let i=0;i<lineCount;i++){
+      const line = document.createElement('div');
+      line.className = 'line';
+      const color = randomColor();
+      line.style.background = `linear-gradient(180deg, rgba(0,0,0,0), ${color}CC, rgba(0,0,0,0))`;
+      line.style.left = Math.random()*window.innerWidth+'px';
+      line.style.animationDuration = (2+Math.random()*3)+'s';
+      document.body.appendChild(line);
+    }
+
+    // YouTube RSS自動取得＆ランダム表示
+    const channelId = 'UCUHpoRIli8UjFYUrLCFocQg';
+    const maxResults = 6;
+    const videoGrid = document.getElementById('video-grid');
+
+    async function fetchVideosRandom() {
+      const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
+      const res = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(rssUrl)}`);
+      const data = await res.json();
+      const parser = new DOMParser();
+      const xmlDoc = parser.parseFromString(data.contents, "application/xml");
+      const entries = Array.from(xmlDoc.getElementsByTagName("entry"));
+
+      entries.sort(() => Math.random() - 0.5);
+
+      const displayCount = Math.min(maxResults, entries.length);
+      for(let i=0; i<displayCount; i++){
+        const videoId = entries[i].getElementsByTagName("yt:videoId")[0].textContent;
+        const iframe = document.createElement('iframe');
+        iframe.src = `https://www.youtube.com/embed/${videoId}`;
+        iframe.className = 'w-full h-64 sm:h-64 md:h-72 lg:h-80 rounded-lg shadow-lg hover:scale-105 transition-transform duration-300';
+        iframe.frameBorder = 0;
+        iframe.allowFullscreen = true;
+        videoGrid.appendChild(iframe);
+      }
+    }
+
+    fetchVideosRandom();
+  </script>
+
 </body>
 </html>
